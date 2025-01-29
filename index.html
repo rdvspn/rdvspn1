@@ -14,26 +14,25 @@
         function getUrlParams() {
             const params = new URLSearchParams(window.location.search);
             return {
-                userId: params.get("userId"),
-                transactionId: params.get("transactionId"),
-                adapter: params.get("adapter"),
+                id: params.get("id"),
+                
                
             };
         }
 
         // Function to create the deep link
-        function createLink(userId, transactionId, adapter ) {
+        function createLink(id ) {
             const baseUrl = "selfierdv://";
-            const query = `?userId=${userId}&transactionId=${transactionId}&adapter=${adapter}`;
+            const query = `?id=${id}`;
             return baseUrl + query;
         }
 
         // Run when the document is ready
         document.addEventListener("DOMContentLoaded", () => {
-            const { userId, transactionId, adapter } = getUrlParams();
+            const { id } = getUrlParams();
 
-            if (userId && transactionId  ) {
-                const appLink = createLink(userId, transactionId ,adapter );
+            if (id) {
+                const appLink = createLink(userId );
 
                 // Open the app link
                 window.location.href = appLink;
